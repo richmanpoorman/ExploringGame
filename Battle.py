@@ -17,6 +17,9 @@ class Enemy:
         return self.stats
 
     def attack(self, player : Character) -> None:
+        playerStats = player.getStats()
+        dmg = self.getStats().dmg
+        playerStats.changeHp(-dmg)
         print("ENEMY ATTACK")
 
     def AI(self):
@@ -38,7 +41,9 @@ class Battle:
         return Battle.currentEnemy
 
     def playerAttack(player : Character, enemy : Enemy) -> None:
-        enemy.getStats().changeHp(-player.getStats().dmg)
+        playerDmg = player.getStats().dmg
+        enemyStats = enemy.getStats()
+        enemyStats.changeHp(-playerDmg)
         print("Did", player.getStats().dmg, "Damage")
 
     def playerChoice(input : int):
@@ -63,13 +68,19 @@ class Battle:
         return True
     
     def battle(player : Character, input : int) -> None:
+        enemy = Battle.currentEnemy
+        # If the player has beaten the enemy
         if (Battle.hasWon(player, Battle.currentEnemy)):
             GameState.setState(GameState.EXPLORE_STATE)
             Battle.currentEnemy = None
             return 
         
-        if (Battle.battleTurn(input, player, Battle.currentEnemy, Battle.playerTurn)):
-            Battle.playerTurn = Battle.playerTurn
+        # If the player made a selection
+        if (Battle.battleTurn(input, player, enemy, Battle.playerTurn)):
+            Battle.playerTurn = False
+            # Enemy Turn
+            enemy.AI()(player)
+            Battle.playerTurn = True
         
         
 

@@ -48,6 +48,43 @@ player = Character()
 
 font = pygame.font.SysFont(None, CELL_SIZE)
 
+class Button:
+    def __init__(self, position : tuple, dimensions : tuple, action, name : str= ""):
+        self.update(position, dimensions, action, name)
+    
+    def press(self, position : tuple) -> None:
+        x, y = position
+
+        left   = self.position[0] 
+        right  = self.position[0] + self.dimensions[0]
+        top    = self.position[1]
+        bottom = self.position[1] + self.dimensions[1]
+
+        if (x < left or x > right or y < top or y > bottom):
+            return 
+        print("Here we go")
+        self.action()
+    
+    def update(self, position : tuple = None, dimensions : tuple = None, action = None, name : str = None, bgColor : tuple = WHITE):
+        if position != None:
+            self.position = position 
+        if dimensions != None:
+            self.dimensions = dimensions 
+        if name != None:
+            self.name = name 
+        if action != None:
+            self.action = action
+        
+        w, h = self.dimensions
+        text = font.render(self.name, True, BLACK)
+        self.textBox = pygame.Surface(self.dimensions)
+        pygame.draw.rect(self.textBox, bgColor, pygame.Rect(0, 0, w, h))
+        self.textBox.blit(text, (w // 2 - font.size(self.name)[0] // 2, h // 2 - font.size(self.name)[1] // 2))
+        
+
+    def drawButton(self, screen : pygame.Surface) -> None:
+        screen.blit(self.textBox, self.position)
+        
 
 def statDisplay(player : Character) -> None:
     BAR_BACK_COLOR = (100, 100, 100)
@@ -56,12 +93,14 @@ def statDisplay(player : Character) -> None:
     HP_POS_X, HP_POS_Y = 20, 20
     MP_POS_X, MP_POS_Y = 20, 40
 
+    hpBarUsed = int(BAR_WIDTH * player.getStats().getHpPercentage())
     pygame.draw.rect(screen, BAR_BACK_COLOR, pygame.Rect(HP_POS_X, HP_POS_Y, BAR_WIDTH, BAR_HEIGHT))
-    pygame.draw.rect(screen, RED           , pygame.Rect(HP_POS_X, (int)(HP_POS_Y * player.getStats().getHpPercentage()), BAR_WIDTH, BAR_HEIGHT))
+    pygame.draw.rect(screen, RED           , pygame.Rect(HP_POS_X, HP_POS_Y, hpBarUsed, BAR_HEIGHT))
 
 
+    mpBarUsed = int(BAR_WIDTH * player.getStats().getMpPercentage())
     pygame.draw.rect(screen, BAR_BACK_COLOR, pygame.Rect(MP_POS_X, MP_POS_Y, BAR_WIDTH, BAR_HEIGHT))
-    pygame.draw.rect(screen, BLUE          , pygame.Rect(MP_POS_X, (int)(MP_POS_Y * player.getStats().getMpPercentage()), BAR_WIDTH, BAR_HEIGHT))
+    pygame.draw.rect(screen, BLUE          , pygame.Rect(MP_POS_X, MP_POS_Y , mpBarUsed, BAR_HEIGHT))
 
 def renderCell(deltaX : int, deltaY : int, halfBoardSize : tuple) -> None:
     dispX = OFFSET + (deltaX + halfBoardSize[0]) * (CELL_SIZE + SPACING)
@@ -99,42 +138,23 @@ def renderBoard() -> None:
             renderCell(deltaX, deltaY, halfBoardSize)
 
 
-class Button:
-    def __init__(self, position : tuple, dimensions : tuple, action, name : str= ""):
-        self.position = position
-        self.dimensions = dimensions 
-        self.action = action
-        self.name = name
-    
-    def press(self, position : tuple) -> None:
-        x, y = position
-
-        left   = self.position[0] 
-        right  = self.position[0] + self.dimensions[0]
-        top    = self.position[1]
-        bottom = self.position[1] + self.dimensions[1]
-
-        if (x < left or x > right or y < top or y > bottom):
-            return 
-        print("Here we go")
-        self.action()
-        
 
 inputVal = -1
+# Create the buttons which change the input value
 def battleInputButton(changeInputTo : int):
     def inputFunc() -> None:
         global inputVal
         inputVal = changeInputTo 
     return inputFunc
-battleButtons = [
-    Button((100, 100), (100, 100), battleInputButton(0))
-]
+
+    # Creates the buttons, with the names above
+buttonNames = [ "Attack 1", "Attack 2"]
+battleButtons = [ Button((110 * (i) + 20, SCREEN_SIZE[1] - 100), (100, 50), battleInputButton(i), buttonNames[i]) for i in range(len(buttonNames)) ]
 
 def renderBattle() -> None: 
     for button in battleButtons:
-        x, y = button.position 
-        w, h = button.dimensions
-        pygame.draw.rect(screen, WHITE, pygame.Rect(x, y, w, h))
+        button.drawButton(screen)
+        
 
 def checkButtons(mousePosition : tuple) -> None:
     for button in battleButtons:
