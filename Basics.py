@@ -1,4 +1,5 @@
 import pygame
+from typing import Tuple
 
 # Singleton which stores the static variables for game state (THERE IS NO INSTANCE)
 class GameState:
@@ -15,12 +16,12 @@ class GameState:
         return GameState.state
 
 class Stats:
-    def __init__(self, hp : int, mp : int, dmg : int, lvl : int, exp : int = 0, money : int = 0):
+    def __init__(self, hp : int, mp : int, physicalDmg : int, magicDmg : int, lvl : int, exp : int = 0, money : int = 0):
         self.hp = hp
         self.maxHp = hp
         self.mp = mp 
         self.maxMp = mp
-        self.dmg = dmg 
+        self.dmg = (physicalDmg, magicDmg)
         self.lvl = lvl 
         self.exp = exp
         self.money = money 
@@ -41,13 +42,13 @@ class Stats:
 # Classes representing different things
     # BASIC CLASSES (Testing out composition) IN ORDER TO BE ABLE TO BE EXTENDED LATER
 class Location:
-    def __init__(self, position : tuple = (0, 0)):
+    def __init__(self, position : Tuple[int, int] = (0, 0)):
         self.position = position
     
-    def getPosition(self) -> tuple:
+    def getPosition(self) -> Tuple[int, int]:
         return self.position
 
-    def updatePosition(self, newPosition : tuple) -> None:
+    def updatePosition(self, newPosition : Tuple[int, int]) -> None:
         self.position = newPosition
 
 #
@@ -55,14 +56,14 @@ class Location:
 #
 
 class Cell:
-    def __init__(self, position : tuple, display : str = "X", color : tuple = (255, 255, 255)):
+    def __init__(self, position : Tuple[int, int], display : str = "X", color : Tuple[int, int, int] = (255, 255, 255)):
         self.location = Location(position)
         self.display = CellDisplay(display, color)
         self.isBlocked = False
         self.found = False
         self.color = color
     
-    def getLocation(self) -> tuple:
+    def getLocation(self) -> Tuple[int, int]:
         return self.location.getPosition()
     
     
@@ -92,7 +93,7 @@ class CellDisplay:
     CELL_FONT_SIZE  = 20
     
 
-    def __init__(self, display : str = "@", color : tuple = (255, 255, 255)):
+    def __init__(self, display : str = "@", color : Tuple[int, int, int] = (255, 255, 255)):
         self.display = display
         self.color = color
 

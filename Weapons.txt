@@ -1,0 +1,250 @@
+Sword
+Knive
+Dagger
+Axe
+Sickle
+Kama
+War Hammer
+Halberd
+Spear
+Guandao
+War Scythe
+Club
+Mace
+Baton
+Stick
+Staff
+Sjambok
+Tonfa
+Knuckleduster
+Bow and Arrow
+Crossbow
+Slingshot
+Slings
+Boomerang
+Blowgun
+Shuriken
+Chakram
+Whip
+Rope
+Tabak-Toyok
+Slapjack
+Nunchaku
+Flyssa
+Kaskara
+Khopesh
+Mameluke Sword
+Nimcha
+Billao
+Shotel
+Akrafena
+Ida
+Takoba
+Ikakalaka
+Mambele
+Dao
+Baguadao
+Butterfly Sword
+Changdao
+Dadao
+Liuyedao
+Miao Dao
+Nandao
+Piandao
+Wodao
+Yanmaodao
+Zhanmadao
+Jian
+Shuangshou Jian
+Hook Sword 
+Nihonto
+Bokken
+Chokutō
+Kyū Guntō
+Shin Guntō
+Hachiwara
+Iaitō
+Jintachi
+Katana
+Kenukigata Tachi
+Kodachi
+Nagamaki
+Ninjato
+Ōdachi
+Sasuga
+Shinai
+Shinken
+Shikomizue
+Tachi
+Tantō
+Tsurugi
+Wakizashi
+Dōtanuki
+Chanbara
+Hwandudaedo
+Saingeom
+Alamang
+Amanremu
+Badik
+Balato
+Blakas
+Celurit
+Gari
+Golok
+Kabeala
+Karambit
+Keris
+Klewang
+Kujang
+Langgai Tinggang
+Luwuk
+Mandau
+Niabor
+Palitai
+Pandat
+Parang
+Rencong
+Sewar
+Si Euli
+Sikin Panjang
+Trisula
+Dha
+Balasiong
+Balisword
+Bangkung
+Banyal
+Barong
+Batangas
+Bolo
+Dahong Palay
+Gayang
+Gulok
+Kalis
+Kampilan
+Panabas
+Pinuti
+Pirah
+Sundang
+Susuwat
+Utak
+Daab
+Krabi
+Patag
+Kirpan
+Tegha
+Sirohi Sword
+Asi
+Firangi
+Hengdang
+Talwar
+Kayamkulam Vaal
+Khanda
+Malappuram Kathi
+Moplah
+Pata
+Ram-dao
+Urumi
+Kastane
+Acinaces
+Chereb
+Kilij
+Pulwar
+Shamshir
+Talwar
+Yataghan
+Khanjar
+Saif
+Scimitar
+Zulfiqar
+Harpe
+Kopis
+Falx
+Gladius
+Makhaira
+Rhomphaia
+Spatha
+Xiphos
+Xyele
+Spatha
+Ring-sword
+Arming sword
+Curtana
+Longsword
+Backsword
+Falchion
+Estoc
+Claymore
+Paramerion
+Seax
+Carolingian Sword
+Zweihänder
+Cutlass
+Rapier
+Sabre
+Épée
+Foil
+Sabre
+Arbir
+Bambu Runcing
+Dangpa
+Gichang
+Hoko Yari
+Ji
+Kama-yari
+Qiang
+Sibat
+Trishula
+Yari
+Naginata
+Assegai
+Ahlspiess
+Boar Spear
+Bohemian Earspoon
+Brandistock
+Dory
+Fauchard
+Goedendag
+Halberd
+Half Pike
+Hasta
+Military Fork
+Ox Tongue Spear
+Partisan
+Pike
+Plançon A Picot
+Ranseur
+Sarissa
+Spetum
+Spontoon
+Trident
+Glaive
+Elsewhere
+Hoeroa
+Iklwa
+Makrigga
+Tepoztopilli
+Barcha
+Kontos
+Lance
+Xyston
+Harpoon
+Angon
+Falarica
+Framea
+Golo
+Hak
+Jaculum
+Javelin
+Lancea
+Pilum
+Plumbata
+Soliferrum
+Spiculum
+Verutum
+Assegai
+Djerid
+Toggling Harpoon
+Tome
+Grimoire
+Wand
+Orb

@@ -2,34 +2,42 @@ from Character import Character
 from random import randint
 from Basics import Stats
 from Basics import GameState
-
+from Armor import Armor
+from typing import Tuple
 import pygame
 
 class Enemy:    
-    def __init__(self, hp : int, mp : int, dmg : int, lvl : int = 1, exp : int = randint(10, 100), money : int = randint(5, 10)):
+    def __init__(self, hp : int, mp : int, dmg : int, lvl : int = 1, exp : int = randint(10, 100), money : int = randint(5, 10), armor : Armor = Armor()):
         self.stats = Stats(hp, mp, dmg, lvl, exp, money)
-
-    def turn(self, player : Character) -> None:
-        enemyMove = self.AI()
-        enemyMove(player)
+        self.armor = armor
 
     def getStats(self):
         return self.stats
 
+    def takeDamage(self, damage : Tuple[int, int]) -> int:
+        armor = self.armor 
+        # If statements to deal with armor that makes resistances worse (a negative resistance)
+        physicalDmg = max(0, damage[0] - armor.resistance[0]) if damage[0] != 0 else 0
+        magicalDmg  = max(0, damage[1] - armor.resistance[1]) if damage[1] != 0 else 0
+        totalDmg = physicalDmg + magicalDmg
+
+        self.stats.changeHp(-totalDmg)
+        return totalDmg
+
     def attack(self, player : Character) -> None:
-        playerStats = player.getStats()
-        dmg = self.getStats().dmg
-        playerStats.changeHp(-dmg)
+        player.takeDamage(self.stats.dmg)
         print("ENEMY ATTACK")
 
-    def AI(self):
-        # TODO:: ADD COMPLEXITY
-        return self.attack
+    def AI(self, player : Character) -> None:
+        self.attack(player)
     
-    def defeat(self) -> tuple: # (EXP, MONEY) 
+    def defeat(self) -> Tuple[int, int]: # (EXP, MONEY) 
         return (self.stats.lvl * self.stats.exp, self.stats.money)
 
-
+PHYSICAL_ATTACK = 0
+MAGIC_ATTACK    = 1
+BAG             = 2
+RUN             = 3
 class Battle:
     currentEnemy : Enemy = None
     playerTurn : bool = True 
@@ -40,32 +48,44 @@ class Battle:
     def getEnemy() -> Enemy:
         return Battle.currentEnemy
 
-    def playerAttack(player : Character, enemy : Enemy) -> None:
-        playerDmg = player.getStats().dmg
-        enemyStats = enemy.getStats()
-        enemyStats.changeHp(-playerDmg)
-        print("Did", player.getStats().dmg, "Damage")
+    def playerAttack(damage : Tuple[int, int]) -> None:
+        Battle.currentEnemy.takeDamage(damage)
 
-    def playerChoice(input : int):
-        if (input == -1):
-            return None
-        print("Attack")
-        return Battle.playerAttack
+
+    def playerChoice(input : int, player : Character, enemy : Enemy) -> bool: # If a choice has been made
+        playerStats = player.getStats()
+        if (input == PHYSICAL_ATTACK):
+            print("Physical Damage")
+            dmg = (playerStats.dmg[0] + player.inventory.equipment.dmg[0], 0)
+            enemy.takeDamage(dmg)
+
+        elif (input == MAGIC_ATTACK):
+            manaCost = player.inventory.equipment.mpCost
+            if (playerStats.mp < manaCost):
+                print("TODO:: Not enough Mana")
+                return False
+            print("Magical Damage")
+            playerStats.changeMp(-manaCost)
+            dmg = (0, player.getStats().dmg[1] + player.inventory.equipment.dmg[1])
+            enemy.takeDamage(dmg)
+
+        elif (input == BAG):
+            # TODO:: The bag stuff 
+            print("Bage")
+            pass
+
+        elif (input == RUN):
+            # TODO:: The run stuff
+            print("Run")
+            pass
+
+        else:
+            return False 
+        return True
 
     def hasWon(player : Character, enemy : Enemy) -> bool:
         return enemy == None or player.getStats().hp <= 0 or enemy.getStats().hp <= 0
 
-    def battleTurn(input : int, player : Character, enemy : Enemy, playerTurn : bool = True) -> bool: # Whether the turn is over
-        
-        if (playerTurn):
-            move = Battle.playerChoice(input) 
-            if (move == None):
-                return False
-            move(player, enemy)
-            return True
-        
-        enemy.turn(player)
-        return True
     
     def battle(player : Character, input : int) -> None:
         enemy = Battle.currentEnemy
@@ -76,10 +96,11 @@ class Battle:
             return 
         
         # If the player made a selection
-        if (Battle.battleTurn(input, player, enemy, Battle.playerTurn)):
-            Battle.playerTurn = False
-            # Enemy Turn
-            enemy.AI()(player)
+        if (Battle.playerTurn):
+            if (Battle.playerChoice(input, player, enemy)):
+                Battle.playerTurn = False
+        else:
+            enemy.AI(player) # Enemy Does Things
             Battle.playerTurn = True
         
         

@@ -86,22 +86,11 @@ class Button:
         screen.blit(self.textBox, self.position)
         
 
-def statDisplay(player : Character) -> None:
-    BAR_BACK_COLOR = (100, 100, 100)
-    BAR_WIDTH  = 200
-    BAR_HEIGHT = 15
-    HP_POS_X, HP_POS_Y = 20, 20
-    MP_POS_X, MP_POS_Y = 20, 40
-
-    hpBarUsed = int(BAR_WIDTH * player.getStats().getHpPercentage())
-    pygame.draw.rect(screen, BAR_BACK_COLOR, pygame.Rect(HP_POS_X, HP_POS_Y, BAR_WIDTH, BAR_HEIGHT))
-    pygame.draw.rect(screen, RED           , pygame.Rect(HP_POS_X, HP_POS_Y, hpBarUsed, BAR_HEIGHT))
-
-
-    mpBarUsed = int(BAR_WIDTH * player.getStats().getMpPercentage())
-    pygame.draw.rect(screen, BAR_BACK_COLOR, pygame.Rect(MP_POS_X, MP_POS_Y, BAR_WIDTH, BAR_HEIGHT))
-    pygame.draw.rect(screen, BLUE          , pygame.Rect(MP_POS_X, MP_POS_Y , mpBarUsed, BAR_HEIGHT))
-
+def statDisplay(percentage : float, pos : tuple, width : int, height : int, color : tuple, backColor : tuple ) -> None:
+    hpBarUsed = int(width * percentage)
+    pygame.draw.rect(screen, backColor, pygame.Rect(pos[0], pos[1], width, height))
+    pygame.draw.rect(screen, color    , pygame.Rect(pos[0], pos[1], hpBarUsed, height))
+    
 def renderCell(deltaX : int, deltaY : int, halfBoardSize : tuple) -> None:
     dispX = OFFSET + (deltaX + halfBoardSize[0]) * (CELL_SIZE + SPACING)
     dispY = OFFSET + (deltaY + halfBoardSize[1]) * (CELL_SIZE + SPACING)
@@ -130,13 +119,14 @@ def renderCell(deltaX : int, deltaY : int, halfBoardSize : tuple) -> None:
             cellSurface.set_alpha(FAR_OPACITY)
         screen.blit(cellSurface, (dispX, dispY))
 
-
 def renderBoard() -> None:
+    statDisplay(percentage = player.getStats().getHpPercentage(), pos = (20, 20), width = 200, height = 15, color = RED, backColor = (100, 100, 100))
+    statDisplay(percentage = player.getStats().getMpPercentage(), pos = (20, 40), width = 200, height = 15, color = BLUE, backColor = (100, 100, 100))
+    
     halfBoardSize = (BOARD_SIZE[0] // 2, BOARD_SIZE[1] // 2)
     for deltaX in range(-halfBoardSize[0] + 1, halfBoardSize[1]):
         for deltaY in range(-halfBoardSize[1] + 1, halfBoardSize[1]):
             renderCell(deltaX, deltaY, halfBoardSize)
-
 
 
 inputVal = -1
@@ -148,15 +138,16 @@ def battleInputButton(changeInputTo : int):
     return inputFunc
 
     # Creates the buttons, with the names above
-buttonNames = [ "Attack 1", "Attack 2"]
+buttonNames = [ "Physical Attack", "Magic Attack", "Bag", "Run"]
 battleButtons = [ Button((110 * (i) + 20, SCREEN_SIZE[1] - 100), (100, 50), battleInputButton(i), buttonNames[i]) for i in range(len(buttonNames)) ]
 
 def renderBattle() -> None: 
+    statDisplay(percentage = player.getStats().getHpPercentage(), pos = (20, 20), width = 200, height = 15, color = RED, backColor = (100, 100, 100))
+    statDisplay(percentage = player.getStats().getMpPercentage(), pos = (20, 40), width = 200, height = 15, color = BLUE, backColor = (100, 100, 100))
     for button in battleButtons:
         button.drawButton(screen)
         
-
-def checkButtons(mousePosition : tuple) -> None:
+def checkBattleButtons(mousePosition : tuple) -> None:
     for button in battleButtons:
         button.press(mousePosition)
 
@@ -179,7 +170,6 @@ def playerMove(key : pygame.key, player : Character) -> None:
     
     player.move(moveTo[0], moveTo[1])
     board.activateCell(player.getPosition())
-
 
 while screenOpen:
     # Reset the press down values and update state
@@ -207,7 +197,7 @@ while screenOpen:
     if (currState == GameState.EXPLORE_STATE):
         playerMove(key, player)
     elif (currState == GameState.BATTLE_STATE):
-        checkButtons(mousePosition)
+        checkBattleButtons(mousePosition)
         Battle.battle(player, inputVal)
 
     # Draw new stuff
@@ -216,7 +206,7 @@ while screenOpen:
     
     if (currState == GameState.EXPLORE_STATE):
         renderBoard()
-        statDisplay(player)
+        
     elif (currState == GameState.BATTLE_STATE):
         renderBattle()
     # Update the screen
