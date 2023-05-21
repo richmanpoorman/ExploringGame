@@ -1,4 +1,4 @@
-import pygame
+import pygame as py
 from typing import Tuple
 
 # Singleton which stores the static variables for game state (THERE IS NO INSTANCE)
@@ -70,7 +70,7 @@ class Cell:
         return self.location.getPosition()
     
     
-    def getSurface(self, font : pygame.font) -> pygame.surface:
+    def getSurface(self, font : py.font) -> py.surface:
         return self.display.getSurface(font)
 
     def getDisplay(self) -> str:
@@ -103,7 +103,7 @@ class CellDisplay:
     def setDisplay(self, display : str = "@") -> None:
         self.display = display
 
-    def getSurface(self, font : pygame.font) -> pygame.surface:
+    def getSurface(self, font : py.font) -> py.surface:
         return font.render(self.display, True, self.color, None)
 
     def getDisplay(self) -> str:
