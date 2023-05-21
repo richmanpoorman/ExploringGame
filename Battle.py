@@ -4,7 +4,6 @@ from Basics import Stats
 from Basics import GameState
 from Armor import Armor
 from typing import Tuple
-import pygame
 
 class Enemy:    
     def __init__(self, hp : int, mp : int, dmg : int, lvl : int = 1, exp : int = randint(10, 100), money : int = randint(5, 10), armor : Armor = Armor()):
@@ -34,11 +33,12 @@ class Enemy:
     def defeat(self) -> Tuple[int, int]: # (EXP, MONEY) 
         return (self.stats.lvl * self.stats.exp, self.stats.money)
 
-PHYSICAL_ATTACK = 0
-MAGIC_ATTACK    = 1
-BAG             = 2
-RUN             = 3
+
 class Battle:
+    PHYSICAL_ATTACK = 0
+    MAGIC_ATTACK    = 1
+    BAG             = 2
+    RUN             = 3
     currentEnemy : Enemy = None
     playerTurn : bool = True 
 
@@ -54,12 +54,12 @@ class Battle:
 
     def playerChoice(input : int, player : Character, enemy : Enemy) -> bool: # If a choice has been made
         playerStats = player.getStats()
-        if (input == PHYSICAL_ATTACK):
+        if (input == Battle.PHYSICAL_ATTACK):
             print("Physical Damage")
             dmg = (playerStats.dmg[0] + player.inventory.equipment.dmg[0], 0)
             enemy.takeDamage(dmg)
 
-        elif (input == MAGIC_ATTACK):
+        elif (input == Battle.MAGIC_ATTACK):
             manaCost = player.inventory.equipment.mpCost
             if (playerStats.mp < manaCost):
                 print("TODO:: Not enough Mana")
@@ -69,12 +69,12 @@ class Battle:
             dmg = (0, player.getStats().dmg[1] + player.inventory.equipment.dmg[1])
             enemy.takeDamage(dmg)
 
-        elif (input == BAG):
+        elif (input == Battle.BAG):
             # TODO:: The bag stuff 
             print("Bage")
             pass
 
-        elif (input == RUN):
+        elif (input == Battle.RUN):
             # TODO:: The run stuff
             print("Run")
             pass

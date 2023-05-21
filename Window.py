@@ -1,7 +1,7 @@
-# import the pygame module
-import pygame
+# import the py module
+import pygame as py
  
-# import pygame.locals for easier
+# import py.locals for easier
 # access to key coordinates
 from pygame.locals import *
 
@@ -17,8 +17,8 @@ from Battle import Battle
 
 
 
-# Initialize the pygame stuff
-pygame.init()
+# Initialize the py stuff
+py.init()
 
 # Static variables
 SCREEN_SIZE = [500, 500]
@@ -38,15 +38,15 @@ SPACING = 1
 SEE_DISTANCE = 5
 FAR_OPACITY  = 75
 # Initialization variables
-screen = pygame.display.set_mode(SCREEN_SIZE)
+screen = py.display.set_mode(SCREEN_SIZE)
 
 screenOpen = True
-clock = pygame.time.Clock()
+clock = py.time.Clock()
 
 board = Board()
 player = Character()
 
-font = pygame.font.SysFont(None, CELL_SIZE)
+font = py.font.SysFont(None, CELL_SIZE)
 
 class Button:
     def __init__(self, position : tuple, dimensions : tuple, action, name : str= ""):
@@ -77,19 +77,19 @@ class Button:
         
         w, h = self.dimensions
         text = font.render(self.name, True, BLACK)
-        self.textBox = pygame.Surface(self.dimensions)
-        pygame.draw.rect(self.textBox, bgColor, pygame.Rect(0, 0, w, h))
+        self.textBox = py.Surface(self.dimensions)
+        py.draw.rect(self.textBox, bgColor, py.Rect(0, 0, w, h))
         self.textBox.blit(text, (w // 2 - font.size(self.name)[0] // 2, h // 2 - font.size(self.name)[1] // 2))
         
 
-    def drawButton(self, screen : pygame.Surface) -> None:
+    def drawButton(self, screen : py.Surface) -> None:
         screen.blit(self.textBox, self.position)
         
 
 def statDisplay(percentage : float, pos : tuple, width : int, height : int, color : tuple, backColor : tuple ) -> None:
     hpBarUsed = int(width * percentage)
-    pygame.draw.rect(screen, backColor, pygame.Rect(pos[0], pos[1], width, height))
-    pygame.draw.rect(screen, color    , pygame.Rect(pos[0], pos[1], hpBarUsed, height))
+    py.draw.rect(screen, backColor, py.Rect(pos[0], pos[1], width, height))
+    py.draw.rect(screen, color    , py.Rect(pos[0], pos[1], hpBarUsed, height))
     
 def renderCell(deltaX : int, deltaY : int, halfBoardSize : tuple) -> None:
     dispX = OFFSET + (deltaX + halfBoardSize[0]) * (CELL_SIZE + SPACING)
@@ -151,7 +151,7 @@ def checkBattleButtons(mousePosition : tuple) -> None:
     for button in battleButtons:
         button.press(mousePosition)
 
-def playerMove(key : pygame.key, player : Character) -> None:
+def playerMove(key : py.key, player : Character) -> None:
     moveTo = (0, 0)
     if key == K_w:
         moveTo = (0 , -1)
@@ -180,14 +180,14 @@ while screenOpen:
 
     # for loop through the event queue
     
-    for event in pygame.event.get():
+    for event in py.event.get():
         
         # Check for KEYDOWN event
         if event.type == KEYDOWN: 
             key = event.key
         
         elif event.type == MOUSEBUTTONDOWN:
-            mousePosition = pygame.mouse.get_pos()
+            mousePosition = py.mouse.get_pos()
             
         # Check for QUIT event
         elif event.type == QUIT:
@@ -210,6 +210,6 @@ while screenOpen:
     elif (currState == GameState.BATTLE_STATE):
         renderBattle()
     # Update the screen
-    pygame.display.flip()
+    py.display.flip()
     clock.tick(20)
-pygame.quit()
+py.quit()

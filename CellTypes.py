@@ -60,6 +60,7 @@ class ShopCell(Cell):
         self.store = Store()
 
     def action(self) -> None:
+        GameState.setState(GameState.SHOP_STATE)
         print("SHOPPING")
 
 class WallCell(Cell):
