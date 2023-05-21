@@ -11,7 +11,7 @@ def fight(percentChance : int):
         return
     print("Fight")
     GameState.setState(GameState.BATTLE_STATE)
-    Battle.setEnemy(Enemy(hp = 100, mp = 0, dmg = 1, lvl = 1, exp = 0, money = 0))
+    Battle.setEnemy(Enemy(hp = 100, mp = 0, physical = 1, magical = 2, lvl = 1, exp = 0, money = 0))
 
 # Classes with different behavior
 class PlainCell(Cell):

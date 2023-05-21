@@ -6,9 +6,10 @@ from Armor import Armor
 from typing import Tuple
 
 class Enemy:    
-    def __init__(self, hp : int, mp : int, dmg : int, lvl : int = 1, exp : int = randint(10, 100), money : int = randint(5, 10), armor : Armor = Armor()):
-        self.stats = Stats(hp, mp, dmg, lvl, exp, money)
+    def __init__(self, hp : int, mp : int, physical : int, magical : int, lvl : int = 1, exp : int = randint(10, 100), money : int = randint(5, 10), armor : Armor = Armor()):
+        self.stats = Stats(hp = hp, mp = mp, physicalDmg = physical, magicDmg = magical, lvl = lvl, exp = exp)
         self.armor = armor
+        self.money = money
 
     def getStats(self):
         return self.stats
@@ -31,7 +32,7 @@ class Enemy:
         self.attack(player)
     
     def defeat(self) -> Tuple[int, int]: # (EXP, MONEY) 
-        return (self.stats.lvl * self.stats.exp, self.stats.money)
+        return (self.stats.lvl * self.stats.exp, self.money)
 
 
 class Battle:
@@ -66,7 +67,7 @@ class Battle:
                 return False
             print("Magical Damage")
             playerStats.changeMp(-manaCost)
-            dmg = (0, player.getStats().dmg[1] + player.inventory.equipment.dmg[1])
+            dmg = (0, playerStats.dmg[1] + player.inventory.equipment.dmg[1])
             enemy.takeDamage(dmg)
 
         elif (input == Battle.BAG):
@@ -75,10 +76,11 @@ class Battle:
             pass
 
         elif (input == Battle.RUN):
-            # TODO:: The run stuff
-            print("Run")
-            pass
-
+            runChance = 50 * (playerStats.lvl / Battle.getEnemy().getStats().lvl)
+            rng = randint(0, 100)
+            print(runChance, rng)
+            if  rng <= runChance:
+                Battle.currentEnemy = None
         else:
             return False 
         return True

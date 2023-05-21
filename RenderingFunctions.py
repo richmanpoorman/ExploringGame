@@ -74,3 +74,4 @@ def renderBattle(stats : Stats, battleButtons : list) -> None:
     statDisplay(percentage = stats.getMpPercentage(), pos = (20, 40), width = 200, height = 15, color = BLUE, backColor = (100, 100, 100))
     for button in battleButtons:
         button.drawButton(screen)
+
