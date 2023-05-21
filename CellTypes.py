@@ -4,6 +4,7 @@ from random import randint
 from Basics import GameState
 from Battle import Battle
 from Battle import Enemy
+from Store import Store
 
 def fight(percentChance : int):
     if (randint(0, 100) > percentChance):
@@ -56,6 +57,7 @@ class ForestCell(Cell):
 class ShopCell(Cell):
     def __init__(self, position : tuple):
         super().__init__(position, "S", TERRAIN_COLOR["S"])
+        self.store = Store()
 
     def action(self) -> None:
         print("SHOPPING")

@@ -8,6 +8,8 @@ class GameState:
 
     EXPLORE_STATE = 0
     BATTLE_STATE  = 1
+    SHOP_STATE    = 2
+    ITEM_STATE    = 3
 
     def setState(state : int) -> None:
         GameState.state = state
@@ -16,7 +18,7 @@ class GameState:
         return GameState.state
 
 class Stats:
-    def __init__(self, hp : int, mp : int, physicalDmg : int, magicDmg : int, lvl : int, exp : int = 0, money : int = 0):
+    def __init__(self, hp : int, mp : int, physicalDmg : int, magicDmg : int, lvl : int, exp : int = 0):
         self.hp = hp
         self.maxHp = hp
         self.mp = mp 
@@ -24,13 +26,14 @@ class Stats:
         self.dmg = (physicalDmg, magicDmg)
         self.lvl = lvl 
         self.exp = exp
-        self.money = money 
     
     def changeHp(self, deltaHp : int = 0) -> None:
         self.hp += deltaHp 
+        self.hp = max(0, min(self.hp, self.maxHp))
     
     def changeMp(self, deltaMp : int = 0) -> None:
         self.mp += deltaMp 
+        self.mp = max(0, min(self.mp, self.maxMp))
     
     def getHpPercentage(self) -> float:
         return self.hp / self.maxHp 

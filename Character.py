@@ -8,7 +8,7 @@ class Character:
     def __init__(self, hp : int = 100, dmg : int = 10, mp : int = 100):
         self.location = Location()
         self.display = CellDisplay("@", (0, 255, 0))
-        self.stats = Stats(hp = hp, mp = mp, physicalDmg = dmg, magicDmg = 2 * dmg, lvl = 1, exp = 0, money = 0)
+        self.stats = Stats(hp = hp, mp = mp, physicalDmg = dmg, magicDmg = 2 * dmg, lvl = 1, exp = 0)
         self.inventory = Inventory()
 
     def move(self, deltaX : int, deltaY : int) -> None:

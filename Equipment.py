@@ -3,3 +3,9 @@ class Equipment:
         self.name = name
         self.dmg = (physical, magic)
         self.mpCost = mpCost
+    
+    def __str__(self):
+        return self.name + ": (Physical Strength: " + str(self.dmg[0]) + ", Magical Strength: " + str(self.dmg[1]) + ", MP Cost: " + str(self.mpCost) + ")"
+    
+    def __repr__(self):
+        return self.__str__()

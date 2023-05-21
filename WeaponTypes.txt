@@ -59,27 +59,27 @@ Shuangshou Jian
 Hook Sword 
 Nihonto
 Bokken
-Chokutō
-Kyū Guntō
-Shin Guntō
+Chokuto
+Kyu Gunto
+Shin Gunto
 Hachiwara
-Iaitō
+Iaito
 Jintachi
 Katana
 Kenukigata Tachi
 Kodachi
 Nagamaki
 Ninjato
-Ōdachi
+odachi
 Sasuga
 Shinai
 Shinken
 Shikomizue
 Tachi
-Tantō
+Tanto
 Tsurugi
 Wakizashi
-Dōtanuki
+Dotanuki
 Chanbara
 Hwandudaedo
 Saingeom
@@ -177,7 +177,7 @@ Claymore
 Paramerion
 Seax
 Carolingian Sword
-Zweihänder
+Zweihander
 Cutlass
 Rapier
 Sabre
@@ -211,7 +211,7 @@ Military Fork
 Ox Tongue Spear
 Partisan
 Pike
-Plançon A Picot
+Plancon A Picot
 Ranseur
 Sarissa
 Spetum
