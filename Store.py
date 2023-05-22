@@ -78,7 +78,7 @@ class Store:
             return False
         inventory.addConsumable(self.consumableStock[index])
         self.consumableStock[index] = None 
-        self.consumableStock[index] = 0
+        self.consumableCosts[index] = 0
         return True
 # TEST
 

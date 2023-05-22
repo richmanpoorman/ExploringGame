@@ -35,6 +35,12 @@ class StoreDisplay:
     def buttonDisplay(screen : py.Surface, font : py.font, bgColor : tuple = (255, 255, 255)):
         StoreDisplay.LEAVE_BUTTON.drawButton(screen, font, bgColor)
 
+        moneyText = font.render("Money: " + str(StoreDisplay.PLAYER_INVENTORY.money), True, (0, 0, 0))
+        moneyBox  = py.Surface((150, 15), py.SRCALPHA)
+        moneyBox.blit(moneyText, (1, 1))
+        py.draw.rect(screen, bgColor, py.Rect(10, 400, 150, 15))
+        screen.blit(moneyBox, (10, 400))
+
         armorText = font.render("ARMOR", True, (0, 0, 0))
         armorBox  = py.Surface((StoreDisplay.DIMENSIONS[0], StoreDisplay.DIMENSIONS[1]), py.SRCALPHA)
         armorBox.blit(armorText, (1, 1))
@@ -43,6 +49,8 @@ class StoreDisplay:
 
         for button, item, cost in zip(StoreDisplay.armorButtons, StoreDisplay.store.armorStock, StoreDisplay.store.armorCosts):
             button.drawButton(screen, font, bgColor)
+            if (item == None):
+                continue
             hpText   = font.render("HP RES: " + str(item.resistance[0]), True, (100, 100, 100))
             mpText   = font.render("MP RES: " + str(item.resistance[1]), True, (100, 100, 100))
             costText = font.render("COST: " + str(cost), True, (100, 100, 100))
@@ -61,6 +69,8 @@ class StoreDisplay:
         
         for button, item, cost in zip(StoreDisplay.equipmentButtons, StoreDisplay.store.equipmentStock, StoreDisplay.store.equipmentCosts):
             button.drawButton(screen, font, bgColor)
+            if (item == None):
+                continue
             hpText   = font.render("HP DMG: " + str(item.dmg[0]), True, (100, 100, 100))
             mpText   = font.render("MP DMG: " + str(item.dmg[1]), True, (100, 100, 100))
             costText = font.render("COST: " + str(cost), True, (100, 100, 100))
@@ -79,6 +89,8 @@ class StoreDisplay:
         
         for button, item, cost in zip(StoreDisplay.consumableButtons, StoreDisplay.store.consumableStock, StoreDisplay.store.consumableCosts):
             button.drawButton(screen, font, bgColor)
+            if (item == None):
+                continue
             hpText   = font.render("HP RCV: " + str(item.recover[0]), True, (100, 100, 100))
             mpText   = font.render("MP RCV: " + str(item.recover[1]), True, (100, 100, 100))
             costText = font.render("COST: " + str(cost), True, (100, 100, 100))
