@@ -1,21 +1,6 @@
 import pygame as py
 from typing import Tuple
 
-# Singleton which stores the static variables for game state (THERE IS NO INSTANCE)
-class GameState:
-    # Actual State
-    state = 0
-
-    EXPLORE_STATE = 0
-    BATTLE_STATE  = 1
-    SHOP_STATE    = 2
-    ITEM_STATE    = 3
-
-    def setState(state : int) -> None:
-        GameState.state = state
-
-    def getState() -> int:
-        return GameState.state
 
 class Stats:
     def __init__(self, hp : int, mp : int, physicalDmg : int, magicDmg : int, lvl : int, exp : int = 0):
@@ -86,7 +71,7 @@ class Cell:
     def isBlocked(self) -> bool:
         return self.isBlocked
     
-    def action(self) -> None:
+    def action(self, lvl : int = 1) -> None:
         print("No Override")
         pass
 

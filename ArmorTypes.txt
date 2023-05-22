@@ -3,12 +3,12 @@ Arming cap
 Arming point
 Banded mail
 Bevor
-Boiled leather
+Leather
 Bracer
 Brigandine
 Buff leather
 Chausses
-Coat of plates
+Coat
 Coif
 Gambeson
 Gorget
@@ -18,12 +18,12 @@ Hauberk
 Jack chain
 Jack of plate
 Jazerant
-Kasten-brust armour
+Kasten-brust
 Lamellar armour
 Laminar armour
 Lance rest
 Chain mail
-Mail and plate armour
+Mail and plate
 Mail coif
 Plackart
 Poleyn
@@ -34,7 +34,7 @@ Schynbalds
 Spaulder
 Splint armour
 Standard
-Transitional armour
+Transitional
 Vambrace
 Vervelles
 Viking Age Arms

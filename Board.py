@@ -48,8 +48,8 @@ class Board:
         # self.addCell(Cell(position, letter, color))
 
     
-    def activateCell(self, position : tuple) -> None:
-        self.getCell(position).action()
+    def activateCell(self, position : tuple, lvl : int = 1) -> None:
+        self.getCell(position).action(lvl)
 
     def addSpecialCell(self, position : tuple, display : str):
         self.addCell(TERRAIN_CLASS[display](position))

@@ -5,6 +5,7 @@ from RenderingFunctions import font, SCREEN_SIZE
 from Character import Character
 from Board import Board
 from Battle import Battle
+from StoreDisplay import StoreDisplay
 
 inputVal = -1
 # Create the buttons which change the input value
@@ -16,8 +17,7 @@ def battleInputButton(changeInputTo : int):
 
     # Creates the buttons, with the names above
 buttonNames = [ "Physical Attack", "Magic Attack", "Bag", "Run"]
-battleButtons = [ Button((110 * (i) + 20, SCREEN_SIZE[1] - 100), (100, 50), battleInputButton(i), font, buttonNames[i]) for i in range(len(buttonNames)) ]
-
+battleButtons = [ Button((110 * (i) + 20, SCREEN_SIZE[1] - 100), (100, 50), battleInputButton(i), buttonNames[i]) for i in range(len(buttonNames)) ]
 
 def checkBattleButtons(mousePosition : tuple) -> None:
     for button in battleButtons:
@@ -41,11 +41,14 @@ def playerMove(key : py.key, player : Character, board : Board) -> None:
         return
     
     player.move(moveTo[0], moveTo[1])
-    board.activateCell(player.getPosition())
+    board.activateCell(player.getPosition(), player.getStats().lvl)
 
 def runBattle(player : Character, mousePosition : tuple) -> None:
     checkBattleButtons(mousePosition)
     Battle.battle(player, inputVal)
+
+def runStore(mousePosition : tuple) -> None:
+    StoreDisplay.buttonCheck(mousePosition)
 
 def refresh() -> None:
     global inputVal

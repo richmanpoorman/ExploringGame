@@ -5,6 +5,7 @@ from Inventory import Inventory
 from typing import Tuple
 
 class Character:
+    LVL_EXP = 50
     def __init__(self, hp : int = 100, dmg : int = 10, mp : int = 100):
         self.location = Location()
         self.display = CellDisplay("@", (0, 255, 0))
@@ -31,3 +32,11 @@ class Character:
 
         self.stats.changeHp(-totalDmg)
         return totalDmg
+
+    def gainRewards(self, exp : int, money : int):
+        self.stats.exp += exp 
+        while (self.stats.exp >= self.stats.lvl * Character.LVL_EXP):
+            self.stats.exp -= self.stats.lvl * Character.LVL_EXP
+            self.stats.lvl += 1
+
+        self.inventory.money += money 

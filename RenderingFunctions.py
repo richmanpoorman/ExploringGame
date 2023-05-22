@@ -2,7 +2,7 @@ import pygame as py
 from Character import Character
 from Basics import Stats 
 from Board import Board
-
+from StoreDisplay import StoreDisplay
 
 SCREEN_SIZE = [500, 500]
 
@@ -73,5 +73,7 @@ def renderBattle(stats : Stats, battleButtons : list) -> None:
     statDisplay(percentage = stats.getHpPercentage(), pos = (20, 20), width = 200, height = 15, color = RED, backColor = (100, 100, 100))
     statDisplay(percentage = stats.getMpPercentage(), pos = (20, 40), width = 200, height = 15, color = BLUE, backColor = (100, 100, 100))
     for button in battleButtons:
-        button.drawButton(screen)
+        button.drawButton(screen, font = font)
 
+def renderStore():
+    StoreDisplay.buttonDisplay(screen, font)

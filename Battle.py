@@ -1,7 +1,7 @@
 from Character import Character
 from random import randint
 from Basics import Stats
-from Basics import GameState
+from GameState import GameState
 from Armor import Armor
 from typing import Tuple
 
@@ -94,6 +94,14 @@ class Battle:
         # If the player has beaten the enemy
         if (Battle.hasWon(player, Battle.currentEnemy)):
             GameState.setState(GameState.EXPLORE_STATE)
+            if (enemy == None):
+                return
+            enemyLvl   = enemy.getStats().lvl
+            playerLvl  = player.getStats().lvl
+            enemyExp   = enemy.getStats().exp 
+            enemyMoney = enemy.money
+            gainedExp  = max(1, enemyLvl - playerLvl + 1) * (1 + enemyExp)
+            player.gainRewards(gainedExp, enemyMoney)
             Battle.currentEnemy = None
             return 
         

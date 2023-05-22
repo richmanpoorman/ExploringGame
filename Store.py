@@ -54,29 +54,32 @@ class Store:
                 self.consumableStock[i] = Consumable(name = consumableNames.generateName(), hp = physical, mp = magical)
                 self.consumableCosts[i] = cost
 
-    def buyArmor(self, index : int, inventory : Inventory):
+    def buyArmor(self, index : int, inventory : Inventory) -> bool:
         if not inventory.useMoney(self.armorCosts[index]):
             print("No Money")
-            return 
+            return False
         inventory.addArmor(self.armorStock[index])
         self.armorStock[index] = None 
         self.armorCosts[index] = 0
+        return True
     
-    def buyEquipment(self, index : int, inventory : Inventory):
+    def buyEquipment(self, index : int, inventory : Inventory) -> bool:
         if not inventory.useMoney(self.equipmentCosts[index]):
             print("No Money")
-            return 
+            return False
         inventory.addEquipment(self.equipmentStock[index])
         self.equipmentStock[index] = None 
         self.equipmentCosts[index] = 0
+        return True
 
-    def buyConsumable(self, index : int, inventory : Inventory):
+    def buyConsumable(self, index : int, inventory : Inventory) -> bool:
         if not inventory.useMoney(self.consumableCosts[index]):
             print("No Money")
-            return 
+            return False
         inventory.addConsumable(self.consumableStock[index])
         self.consumableStock[index] = None 
         self.consumableStock[index] = 0
+        return True
 # TEST
 
 # testStore = Store() 
