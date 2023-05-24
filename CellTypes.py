@@ -6,6 +6,7 @@ from Battle import Battle
 from Battle import Enemy
 from Store import Store
 from StoreDisplay import StoreDisplay
+from ItemNameGenerator import ItemNameGenerator
 
 def fight(percentChance : int, lvl : int = 1):
     if (randint(0, 100) > percentChance):
@@ -15,7 +16,8 @@ def fight(percentChance : int, lvl : int = 1):
     # TODO:: Change to more varied enemies
     lvl      += randint(-5, 5)
     lvl      = max(1, lvl)
-
+    
+    name     = ItemNameGenerator('MonsterTypes.txt').generateName()
     hp       = 10 * lvl + randint(0, 10)
     mp       = 10 * lvl + randint(0, 10)
     netScore = randint(lvl, 2 * lvl)
@@ -23,7 +25,7 @@ def fight(percentChance : int, lvl : int = 1):
     magical  = 2 * netScore // 3 + 1
     exp      = randint(netScore, netScore + hp + mp)
     money    = randint(netScore, netScore + hp + mp)
-    Battle.setEnemy(Enemy(hp = hp, mp = mp, physical = physical, magical = magical, lvl = lvl, exp = exp, money = money))
+    Battle.setEnemy(Enemy(hp = hp, mp = mp, physical = physical, magical = magical, lvl = lvl, exp = exp, money = money, name = name))
 
 # Classes with different behavior
 class PlainCell(Cell):

@@ -1,0 +1,493 @@
+Grendel
+Hag
+Imp
+Kraken
+Ogre
+Sea serpentslithsss
+Witch
+Wraith
+Wurm
+Wyvern
+Afanc
+Alphyn
+Amphiptere
+Basilisk
+Bonnacon
+Chestorius
+Dragon
+Enfield beast
+Griffin
+Hippogriff
+Mandragora
+manticore
+Melusine
+Ouroboros
+Questing Beast
+Salamander
+Woodwose
+Yale
+Ypotryll
+Black Annis
+Barghest
+Bugbear
+Grindylow
+Herne the Hunter
+Jack-In-Irons
+Lubber fiend
+Medieval revenant
+Owlman
+Sceadugenga
+Spring Heeled Jack
+Yeth Hound
+Balor
+Banshee
+Bloody Bones
+Buggane
+Clurichaun
+Dullahan
+Fomorian
+Fuath
+Kelpie
+Leprechaun
+Loch Ness Monster
+Selkie
+Teggie
+Water leaper
+Welsh dragon
+Azure Dragon
+Bai Gu Jing
+Bai Ze
+Black Tortoise
+Chinese Dragon
+Dragon King
+Dragon Turtle
+Dragon of the Zodiac
+Fei Lian
+Fenghuang
+Fucanglong
+Huli jinx g
+Ice Spider
+Jiang Shi
+Jiaolong
+Jingwei
+Kui
+Long Mu
+Luduan
+Madame White Snake
+Mogwai
+Nian
+Nine-headed Bird
+Niu Mo Wang
+Ox-Head and Horse-Face
+Panlong
+Peng
+Penghou
+Pig Dragon
+Pixiu
+Qilin
+Rui Shi
+Sha Wujing
+Shenlong
+Sun Wukong
+Taotie
+Tiangou
+Tianlong
+Venadek
+Vermilion Bird
+Water Monkey
+White Tiger
+Xing Tian
+Yaoguai
+Yinglong
+Zhu Bajie
+Negoogunogumbar
+Obrigwabibikwa
+Apophis
+Ammit
+Demon
+Amut
+Duat
+Mummy
+Phoenix
+Set
+Sphinx
+Beast of Gevaudan
+Bugul Noz
+Gargouille
+La Velue
+Les Lavandières
+Matagot
+Rougarou
+Sea monk
+Tarasque
+Yan-gant-y-tan
+Erlking
+Doppelgänger
+Tessa
+Drude
+Kobold
+Krampus
+Liderc
+Lindworm
+Mephistopheles
+Nachzehrer
+Ordog
+Alastor
+Amphisbaena
+Athos
+Campe
+Centaur
+Cerberus
+Charon
+Charybdis
+Chimera
+Cyclops
+Dryad
+Dracon
+Dragon
+Echidna
+Empusa
+Gigantes
+Griffin
+Gorgon
+Harpy
+Hecatonchires
+Hippocamp
+Hydra
+Kallikantzaros
+Karkinos
+Kronos
+Ladon
+Lamia
+Medusa
+Minotaur
+Nyaid
+Nemean Lion
+Orthus
+Pegasus
+Python
+Roc
+Satyr
+Scylla
+Siren
+Strixes
+Talos
+Tessa
+Typhon
+Werewolf
+Yeti
+Mosasaur
+Acheri
+Asura
+Bhutas
+Daitya
+Garuda
+Naga
+Pishacha
+Preta
+Rakshasa
+Shesha
+Timingila
+Vetala
+Vinayakas
+Yaksha
+Yakshini
+Al-mi'raj
+Buraq
+Dandan
+Falak
+Genie
+Ifrit
+Marid
+Nasnas
+Bahamut
+Ghoul
+Sandwalker
+Kuyutha
+Werehyena
+Abura-akago
+Akaname
+Azukiarai
+Baku
+Byakko
+Chochinobake
+Futakuchi-onna
+Gashadokuro
+Genbu
+Hannya
+Hitodama
+Inugami
+Ittan-momen
+Jikininki
+Jinmenju
+Kappa
+Kasa-obake
+Kitsune
+Kuchisake-onna
+Mokumokuren
+Noppera-bo
+Nue
+Nurikabe
+Oni
+Raiju
+Rokurokubi
+Seiryu
+Shinigami
+Suzaku
+Tanuki
+Tengu
+Tsurube-otoshi
+Umibozu
+Ushi-oni
+Uwan
+Wanyudo
+Yama-uba
+Yamata no Orochi
+Yuki-onna
+Yurei
+Dybbuk
+Golem
+Mazikeen
+Abaddon
+Adramelech
+Apollyon
+Beelzebub
+Behemoth
+Incubus
+Legion
+Leviathan
+Lucifer
+Samael
+Satan
+Succubus
+Terrible Monster
+Ziz
+Banana Leaf Ghost
+Nyuk
+Pi Boph
+Pi Kasu
+Serkahn
+Bestial beast
+El Cadejo
+Ciguapa
+El Chupacabra
+Cuca
+El Duende
+Duppy
+El Jacho
+Headless Mule
+La Llorona
+El Lobison
+Mapinguari
+Mohan
+El Nahual
+Patasola
+La Siguanaba
+El Sombreron
+Tigre capiango
+La Tulivieja
+Umita
+Yacumama
+Zombie
+Ahuizotl
+Cihuateteo
+Cipactli
+Chaneque
+Xtabay
+Basilisco Chilote
+Camahueto
+Cuchivilu
+Fiura
+Invunche
+Trauco
+Ao Ao
+Jasy Jaterei
+Kurupi las Doce
+Luison
+Mboi Tu'i
+Monai
+Pombero
+Teju Jagua
+Cherufe
+Chonchon
+Colo Colo
+Peuchen
+Huay Chivo
+Huay Cot
+Huay Pek
+Pterosaur
+Asag
+Humbaba
+Kur
+Lamastu
+Pazuzu
+Rabisu
+Sirrush
+Tiamat
+Fafnir
+Fenrir
+Grendel
+Hafgufa
+hafhogr egod
+Jormungandr
+Lyngbakr
+Kraken
+Nidhogger
+Sleipnir
+Alma
+Axehandle hound
+Baxbaxwalanuksiwe
+Bat Boy
+Bigfoot
+Black Dog
+Black Eyed People
+Boogeyman
+Boo Hag
+Bloody Mary
+Cadborosaurus Willsi
+Champ
+Darkman
+Deer Woman
+Demon Queen Raven
+Dover Demon
+El Chupacabra
+Flatwoods Monster
+Gigantopithecus
+Gremlin
+Greys
+Gray Alien
+The Grinning Man
+Hidebehind
+Hodag
+Hook Man
+Hopkinsville Goblin
+Jersey Devil
+Loveland frog
+Lusca
+Mermaid
+Merman
+Montauk Monster
+Mothman
+Ogopogo
+Owlman
+Pedro Mountains Mummy
+Piasa
+Slenderman
+Saroo
+Shadow people
+Squonk
+Reptoid Alien
+Tailypo
+Thunderbird
+Tizheruk
+Tsiatko
+Vampire
+Underwater panther
+Wampus Cat
+Wendigo
+Werewolf
+Thelema
+Aiwass
+Choronzon
+Fulad-zereh
+Hadhayosh
+Homa
+Karkadann
+Manticore
+Popobawa
+Roc
+Simurgh
+Zahhak
+Church Grim
+Draug
+Gulon
+Mara
+Myling
+Ondine
+Sylph
+Troll
+Bean Nighe
+Bodach
+Bogle
+The Burry Man
+Each uisge
+Eachy
+Fachen
+Lavellan
+Loch Ness Monster
+Monster of Glamis
+Morag
+Nuckelavee
+Redcap
+Trow
+Wirry-cow
+Wulver
+Ala
+Baba Yaga
+Bagiennik
+Bukavac
+Chernobog
+Dhampir
+Domovoi
+Drekavac
+Hiisi
+Kikimora
+Koschei
+Lady midday
+Leshy
+Likho
+Nightingale the Robber
+Polevik
+Rusalka
+Skrzak
+Slavic dragon
+Stuhać
+Topielec
+Vampire
+Vodyanoy
+A Bao A Qu
+Alan
+Aswang
+Batibat
+Ekek
+Jenglot
+Kapre
+Leyak
+Manananggal
+Orang minyak
+Pelesit
+Penanggalan
+Pontianak
+Langsuir
+Pugot
+Sigbin
+Tikbalang
+Tiyanak
+Toyol
+Ropen
+Taotao Mona
+Taniwha
+Popobawa
+Abasi
+Abra
+Alkarisi
+Badi Kara
+Carsamba Karisi
+Demirkiynak
+Germakoci
+Gulyabani
+Hinkir Munkur
+Hirtik
+Hortlak
+Itbarak
+Karabasan
+Karakoncolos
+Kamos
+Karakura
+Ocu
+Umacı
+Catoblepas
+Dragon
+Man-eating tree
+Peryton
+Dinosaur

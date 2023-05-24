@@ -17,7 +17,7 @@ def battleInputButton(changeInputTo : int):
 
     # Creates the buttons, with the names above
 buttonNames = [ "Physical Attack", "Magic Attack", "Bag", "Run"]
-battleButtons = [ Button((110 * (i) + 20, SCREEN_SIZE[1] - 100), (100, 50), battleInputButton(i), buttonNames[i]) for i in range(len(buttonNames)) ]
+battleButtons = [ Button((110 * (i) + 20, SCREEN_SIZE[1] - 150), (100, 50), battleInputButton(i), buttonNames[i]) for i in range(len(buttonNames)) ]
 
 def checkBattleButtons(mousePosition : tuple) -> None:
     for button in battleButtons:

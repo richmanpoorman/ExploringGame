@@ -61,7 +61,7 @@ while screenOpen:
     if (currState == GameState.EXPLORE_STATE):
         renderBoard(player, board)
     elif (currState == GameState.BATTLE_STATE):
-        renderBattle(player.getStats(), battleButtons)
+        renderBattle(player, battleButtons)
     elif (currState == GameState.SHOP_STATE):
         renderStore()
 

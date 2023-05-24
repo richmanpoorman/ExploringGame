@@ -6,10 +6,11 @@ from Armor import Armor
 from typing import Tuple
 
 class Enemy:    
-    def __init__(self, hp : int, mp : int, physical : int, magical : int, lvl : int = 1, exp : int = randint(10, 100), money : int = randint(5, 10), armor : Armor = Armor()):
+    def __init__(self, hp : int, mp : int, physical : int, magical : int, lvl : int = 1, exp : int = randint(10, 100), money : int = randint(5, 10), armor : Armor = Armor(), name : str = None):
         self.stats = Stats(hp = hp, mp = mp, physicalDmg = physical, magicDmg = magical, lvl = lvl, exp = exp)
         self.armor = armor
         self.money = money
+        self.name = name
 
     def getStats(self):
         return self.stats
