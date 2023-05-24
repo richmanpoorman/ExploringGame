@@ -3,6 +3,7 @@ from Character import Character
 from Basics import Stats 
 from Board import Board
 from StoreDisplay import StoreDisplay
+from Button import Button
 
 SCREEN_SIZE = [500, 500]
 
@@ -102,11 +103,11 @@ def renderCell(player : Character, board : Board, deltaX : int, deltaY : int, ha
             cellSurface.set_alpha(FAR_OPACITY)
         screen.blit(cellSurface, (dispX, dispY))
 
-def renderBoard(player : Character, board : Board) -> None:
+def renderBoard(player : Character, board : Board, itemButton : Button) -> None:
     # statDisplay(percentage = player.getStats().getHpPercentage(), pos = (20, 20), width = 200, height = 15, color = RED, backColor = (100, 100, 100))
     # statDisplay(percentage = player.getStats().getMpPercentage(), pos = (20, 40), width = 200, height = 15, color = BLUE, backColor = (100, 100, 100))
     infoDisplay(player)
-    
+    itemButton.drawButton(screen, font)
     halfBoardSize = (BOARD_SIZE[0] // 2, BOARD_SIZE[1] // 2)
     for deltaX in range(-halfBoardSize[0] + 1, halfBoardSize[1]):
         for deltaY in range(-halfBoardSize[1] + 1, halfBoardSize[1]):
@@ -122,3 +123,31 @@ def renderBattle(player: Character, battleButtons : list) -> None:
 
 def renderStore():
     StoreDisplay.buttonDisplay(screen, font)
+
+def renderItemList(player : Character, armorButtons : list, equipmentButtons : list, consumableButtons : list, exitButton : Button):
+    inventory = player.inventory
+    infoDisplay(player)
+    exitButton.drawButton(screen, font)
+    for idx in range(len(armorButtons)):
+        x, y = armorButtons[idx].position
+        w, h = armorButtons[idx].dimensions
+        armorButtons[idx].drawButton(screen, font)
+        numberDisplay("STR RES" , (x, y + h + 1), inventory.armorList[idx].resistance[0], dimensions = (w, h))
+        numberDisplay("MAG RES" , (x, y + 2 * h + 1), inventory.armorList[idx].resistance[1], dimensions = (w, h))
+
+    for idx in range(len(equipmentButtons)):
+        x, y = equipmentButtons[idx].position
+        w, h = equipmentButtons[idx].dimensions
+        equipmentButtons[idx].drawButton(screen, font)
+        numberDisplay("STR" , (x, y + h + 1), inventory.equipmentList[idx].dmg[0], dimensions = (w, h), textColor = (100, 100, 100))
+        numberDisplay("MAG" , (x, y + 2 * h + 1), inventory.equipmentList[idx].dmg[1], dimensions = (w, h), textColor = (100, 100, 100))
+
+    for idx in range(len(consumableButtons)):
+        x, y = consumableButtons[idx].position
+        w, h = consumableButtons[idx].dimensions
+        consumableButtons[idx].drawButton(screen, font)
+        numberDisplay("HP RCV" , (x, y + h + 1), inventory.bag[idx].recover[0], dimensions = (w, h), textColor = (100, 100, 100))
+        numberDisplay("MP RCV" , (x, y + 2 * h + 1), inventory.bag[idx].recover[1], dimensions = (w, h), textColor = (100, 100, 100))
+
+def renderGameOver(gameOverButton : Button):
+    gameOverButton.drawButton(screen, font)

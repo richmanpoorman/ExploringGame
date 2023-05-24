@@ -49,21 +49,31 @@ while screenOpen:
     
     # TODO:: ADD PLAYER INTERACTION
     if (currState == GameState.EXPLORE_STATE):
-        playerMove(key, player, board)
+        runBoard(player, board, key, mousePosition)
     elif (currState == GameState.BATTLE_STATE):
         runBattle(player, mousePosition)
     elif (currState == GameState.SHOP_STATE):
         runStore(mousePosition)
-
+    elif (currState == GameState.ITEM_STATE):
+        runItem(player, mousePosition)
+    elif (currState == GameState.GAMEOVER_STATE):
+        player = Character() 
+        board  = Board() 
+        StoreDisplay.PLAYER_INVENTORY = player.inventory
+        runGameOver(mousePosition)
     # Draw new stuff
     screen.fill(BLACK)
-    
+    # print(armorButtonList)
     if (currState == GameState.EXPLORE_STATE):
-        renderBoard(player, board)
+        renderBoard(player, board, itemButton)
     elif (currState == GameState.BATTLE_STATE):
         renderBattle(player, battleButtons)
     elif (currState == GameState.SHOP_STATE):
         renderStore()
+    elif (currState == GameState.ITEM_STATE):
+        renderItemList(player, ItemButtons.armorButtonList, ItemButtons.equipmentButtonList, ItemButtons.consumableButtonList, exitItemButton)
+    elif (currState == GameState.GAMEOVER_STATE):
+        renderGameOver(gameOverButton)
 
 
     # Update the screen

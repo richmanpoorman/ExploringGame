@@ -87,7 +87,10 @@ class Battle:
         return True
 
     def hasWon(player : Character, enemy : Enemy) -> bool:
-        return enemy == None or player.getStats().hp <= 0 or enemy.getStats().hp <= 0
+        if (player.getStats().hp <= 0):
+            GameState.setState(GameState.GAMEOVER_STATE)
+            return False
+        return enemy == None or enemy.getStats().hp <= 0
 
     
     def battle(player : Character, input : int) -> None:

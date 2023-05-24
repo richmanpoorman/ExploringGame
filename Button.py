@@ -4,7 +4,7 @@ class Button:
     def __init__(self, position : tuple, dimensions : tuple, action, name : str = ""):
         self.update(position, dimensions, action, name)
     
-    def press(self, position : tuple) -> None:
+    def press(self, position : tuple) -> bool:
         x, y = position
 
         left   = self.position[0] 
@@ -13,9 +13,10 @@ class Button:
         bottom = self.position[1] + self.dimensions[1]
 
         if (x < left or x > right or y < top or y > bottom):
-            return 
+            return False
         print("Here we go")
         self.action()
+        return True
     
     # If the button changes for some reason
     def update(self, position : tuple = None, dimensions : tuple = None, action = None, name : str = None):
