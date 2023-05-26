@@ -4,6 +4,8 @@ from Basics import Stats
 from Board import Board
 from StoreDisplay import StoreDisplay
 from Button import Button
+from Battle import Enemy
+from Battle import Battle
 
 SCREEN_SIZE = [500, 500]
 
@@ -75,6 +77,26 @@ def infoDisplay(player : Character):
     numberDisplay("STR", (420, 450), stats.dmg[0])
     numberDisplay("MAG", (420, 450 + defaultHeight), stats.dmg[1])
 
+
+def enemyInfo(enemy : Enemy):
+    if (enemy == None):
+        return
+    defaultHeight = font.size("X")[1] + 2
+    stats = enemy.getStats()
+    armor = enemy.armor
+
+    numberDisplay("ENEMY HP", (320, 20), stats.hp, stats.maxHp)
+    numberDisplay("ENEMY MP", (320, 20 + defaultHeight), stats.mp, stats.maxMp)
+
+    numberDisplay("ENEMY LVL", (320, 20 + 2 * defaultHeight + 1), stats.lvl)
+
+    textDisplay("ENEMY ARMOR: " + armor.name, (320, 20 + 3 * defaultHeight + 2))
+    numberDisplay("ENEMY STR RES" , (320, 20 + 4 * defaultHeight + 2), armor.resistance[0])
+    numberDisplay("ENEMY MAG RES" , (320, 20 + 5 * defaultHeight + 2), armor.resistance[1])
+
+    numberDisplay("ENEMY STR", (320, 20 + 6 * defaultHeight + 3), stats.dmg[0])
+    numberDisplay("ENEMY MAG", (320, 20 + 7 * defaultHeight + 3), stats.dmg[1])
+
 def renderCell(player : Character, board : Board, deltaX : int, deltaY : int, halfBoardSize : tuple) -> None:
     dispX = OFFSET + (deltaX + halfBoardSize[0]) * (CELL_SIZE + SPACING)
     dispY = OFFSET + (deltaY + halfBoardSize[1]) * (CELL_SIZE + SPACING)
@@ -113,11 +135,11 @@ def renderBoard(player : Character, board : Board, itemButton : Button) -> None:
         for deltaY in range(-halfBoardSize[1] + 1, halfBoardSize[1]):
             renderCell(player, board, deltaX, deltaY, halfBoardSize)
 
-
 def renderBattle(player: Character, battleButtons : list) -> None: 
     # statDisplay(percentage = stats.getHpPercentage(), pos = (20, 20), width = 200, height = 15, color = RED, backColor = (100, 100, 100))
     # statDisplay(percentage = stats.getMpPercentage(), pos = (20, 40), width = 200, height = 15, color = BLUE, backColor = (100, 100, 100))
     infoDisplay(player)
+    enemyInfo(Battle.currentEnemy)
     for button in battleButtons:
         button.drawButton(screen, font = font)
 
@@ -148,6 +170,19 @@ def renderItemList(player : Character, armorButtons : list, equipmentButtons : l
         consumableButtons[idx].drawButton(screen, font)
         numberDisplay("HP RCV" , (x, y + h + 1), inventory.bag[idx].recover[0], dimensions = (w, h), textColor = (100, 100, 100))
         numberDisplay("MP RCV" , (x, y + 2 * h + 1), inventory.bag[idx].recover[1], dimensions = (w, h), textColor = (100, 100, 100))
+
+def renderConsumableList(player : Character, inFightConsumableButtons : list):
+    inventory = player.inventory
+    infoDisplay(player)
+    for idx in range(len(inFightConsumableButtons)):
+        if (idx >= len(inventory.bag)):
+            continue
+        x, y = inFightConsumableButtons[idx].position
+        w, h = inFightConsumableButtons[idx].dimensions
+        inFightConsumableButtons[idx].drawButton(screen, font)
+        numberDisplay("HP RCV" , (x, y + h + 1), inventory.bag[idx].recover[0], dimensions = (w, h), textColor = (100, 100, 100))
+        numberDisplay("MP RCV" , (x, y + 2 * h + 1), inventory.bag[idx].recover[1], dimensions = (w, h), textColor = (100, 100, 100))
+
 
 def renderGameOver(gameOverButton : Button):
     gameOverButton.drawButton(screen, font)

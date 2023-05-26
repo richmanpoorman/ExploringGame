@@ -4,6 +4,7 @@ from Basics import Stats
 from GameState import GameState
 from Armor import Armor
 from typing import Tuple
+from ItemButtons import ItemButtons
 
 class Enemy:    
     def __init__(self, hp : int, mp : int, physical : int, magical : int, lvl : int = 1, exp : int = randint(10, 100), money : int = randint(5, 10), armor : Armor = Armor(), name : str = None):
@@ -73,8 +74,13 @@ class Battle:
 
         elif (input == Battle.BAG):
             # TODO:: The bag stuff 
-            print("Bage")
-            pass
+            if (not player.inventory.bag):
+                print("Empty Bag")
+                return False 
+            print("Bag")
+            ItemButtons.makeConsumableButton(player)
+            GameState.setState(GameState.CONSUMABLE_STATE)
+            
 
         elif (input == Battle.RUN):
             runChance = 50 * (playerStats.lvl / Battle.getEnemy().getStats().lvl)

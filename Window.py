@@ -12,6 +12,7 @@ from Board import Board
 from Character import Character
 from GameState import GameState
 from StoreDisplay import StoreDisplay
+from ItemButtons import ItemButtons
 # Initialize the py stuff
 
 
@@ -53,7 +54,7 @@ while screenOpen:
     elif (currState == GameState.BATTLE_STATE):
         runBattle(player, mousePosition)
     elif (currState == GameState.SHOP_STATE):
-        runStore(mousePosition)
+        runStore(mousePosition) 
     elif (currState == GameState.ITEM_STATE):
         runItem(player, mousePosition)
     elif (currState == GameState.GAMEOVER_STATE):
@@ -61,6 +62,9 @@ while screenOpen:
         board  = Board() 
         StoreDisplay.PLAYER_INVENTORY = player.inventory
         runGameOver(mousePosition)
+    elif (currState == GameState.CONSUMABLE_STATE):
+        runInFightConsumable(player, mousePosition)
+    
     # Draw new stuff
     screen.fill(BLACK)
     # print(armorButtonList)
@@ -74,7 +78,8 @@ while screenOpen:
         renderItemList(player, ItemButtons.armorButtonList, ItemButtons.equipmentButtonList, ItemButtons.consumableButtonList, exitItemButton)
     elif (currState == GameState.GAMEOVER_STATE):
         renderGameOver(gameOverButton)
-
+    elif (currState == GameState.CONSUMABLE_STATE):
+        renderConsumableList(player, ItemButtons.inFightConsumableButtonList)
 
     # Update the screen
     py.display.flip()

@@ -9,6 +9,7 @@ from StoreDisplay import StoreDisplay
 from Inventory import Inventory
 from GameState import GameState
 from Basics import Stats
+from ItemButtons import ItemButtons
 
 inputVal = -1
 # Create the buttons which change the input value
@@ -26,68 +27,9 @@ def checkBattleButtons(mousePosition : tuple) -> None:
     for button in battleButtons:
         button.press(mousePosition)
 
-class ItemButtons:
-    armorButtonList = []
-    equipmentButtonList = []
-    consumableButtonList = []
 
-    def makeItemButtons(player : Character):
-        inventory = player.inventory 
-        stats = player.getStats()
-
-        DIMENSIONS  = (170, 12)
-        INBETWEEN_X = 10
-        INBETWEEN_Y = 1
-        CAPTION_HEIGHT = 3
-        DESC_HEIGHT = 50
-        Y_POS = 50
-        ARMOR_X_POS = 10
-        EQUIPMENT_X_POS = ARMOR_X_POS + (DIMENSIONS[0] + INBETWEEN_X) 
-        CONSUMABLE_X_POS = EQUIPMENT_X_POS + (DIMENSIONS[0] + INBETWEEN_X) 
-
-        def buttonYPosition(index : int) -> int:
-            return Y_POS + (DIMENSIONS[1] + INBETWEEN_Y + DESC_HEIGHT + CAPTION_HEIGHT) * index
-        def armorFunction(idx : int):
-            def buttonFunc():
-                inventory.useArmor(idx)
-            return buttonFunc
-
-        def weaponFunction(idx : int):
-            def buttonFunc():
-                inventory.useWeapon(idx)
-            return buttonFunc
-
-        def consumableFunction(idx : int, stats : Stats):
-            def buttonFunc():
-                inventory.useConsumable(idx, stats)
-            return buttonFunc
-        
-        ItemButtons.armorButtonList = [
-            Button((ARMOR_X_POS, Y_POS + buttonYPosition(idx)), DIMENSIONS, armorFunction(idx), inventory.armorList[idx].name)
-            for idx in reversed(range(len(inventory.armorList)))
-        ]
-        ItemButtons.equipmentButtonList = [
-            Button((EQUIPMENT_X_POS, Y_POS + buttonYPosition(idx)), DIMENSIONS, weaponFunction(idx), inventory.equipmentList[idx].name)
-            for idx in reversed(range(len(inventory.equipmentList)))
-        ]
-        ItemButtons.consumableButtonList = [
-            Button((CONSUMABLE_X_POS, Y_POS + buttonYPosition(idx)), DIMENSIONS, consumableFunction(idx, stats), inventory.bag[idx].name)
-            for idx in reversed(range(len(inventory.bag)))
-        ]
-        
-    def itemButtonCheck(mousePosition : tuple, inventory : Inventory) -> None:
-        for button in ItemButtons.armorButtonList:
-            button.press(mousePosition)
-        for button in ItemButtons.equipmentButtonList:
-            button.press(mousePosition)
-        for button in ItemButtons.consumableButtonList:
-            if (button.press(mousePosition)):
-                ItemButtons.makeItemButtons(inventory)
-    
-itemButton     = Button((20, 430), (50, 15), lambda : GameState.setState(GameState.ITEM_STATE), "Equipment Menu")
-exitItemButton = Button((20, 430), (50, 15), lambda : GameState.setState(GameState.EXPLORE_STATE), "Exit Menu")
-
-
+itemButton     = Button((20, 430), (150, 15), lambda : GameState.setState(GameState.ITEM_STATE), "Equipment Menu")
+exitItemButton = Button((20, 430), (150, 15), lambda : GameState.setState(GameState.EXPLORE_STATE), "Exit Menu")
 
 def playerMove(player : Character, board : Board, key : py.key) -> None:
     moveTo = (0, 0)
@@ -109,6 +51,12 @@ def playerMove(player : Character, board : Board, key : py.key) -> None:
     player.move(moveTo[0], moveTo[1])
     board.activateCell(player.getPosition(), player.getStats().lvl)
 
+def gameOverButtonFunction():
+    def buttonFunc():
+        GameState.setState(GameState.EXPLORE_STATE)
+        print(GameState.getState())
+    return buttonFunc 
+
 def runBattle(player : Character, mousePosition : tuple) -> None:
     checkBattleButtons(mousePosition)
     Battle.battle(player, inputVal)
@@ -125,12 +73,9 @@ def runItem(player : Character, mousePosition : tuple):
     exitItemButton.press(mousePosition)
     ItemButtons.itemButtonCheck(mousePosition, player)
 
-
-def gameOverButtonFunction():
-    def buttonFunc():
-        GameState.setState(GameState.EXPLORE_STATE)
-        print(GameState.getState())
-    return buttonFunc 
+def runInFightConsumable(player : Character, mousePosition : tuple):
+    for button in ItemButtons.inFightConsumableButtonList:
+        button.press(mousePosition)
 
 gameOverButton = Button((0, 0), (500, 500), gameOverButtonFunction(), "GAME OVER (PRESS TO RESTART)")
 def runGameOver(mousePosition : tuple):

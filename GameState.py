@@ -3,11 +3,12 @@ class GameState:
     # Actual State
     state = 0
 
-    EXPLORE_STATE  = 0
-    BATTLE_STATE   = 1
-    SHOP_STATE     = 2
-    ITEM_STATE     = 3
-    GAMEOVER_STATE = 4
+    EXPLORE_STATE    = 0
+    BATTLE_STATE     = 1
+    SHOP_STATE       = 2
+    ITEM_STATE       = 3
+    GAMEOVER_STATE   = 4
+    CONSUMABLE_STATE = 5
     
     def setState(state : int) -> None:
         GameState.state = state
