@@ -6,22 +6,20 @@ from pygame import Surface
 
 from pygame.font import Font, SysFont
 
-from .....Config import FONTS
+from config.Config import FONTS
 
-from ..MapObjects.MapObject import MapObject
-
-class BaseCell:
+class MountainCell:
     FONT        : str = FONTS['cell_font']
-    FONT_COLOR  : Tuple[int, int, int] = (255, 255, 255)
-    MAP_SYMBOL  : str = 'B'
+    FONT_COLOR  : Tuple[int, int, int] = (97, 101, 107)
+    MAP_SYMBOL  : str = '^'
 
     def __init__(self):
         pass 
 
-    def onObjectEnterCell(self, object : MapObject) -> None: 
+    def onEnterCell(self) -> None: 
         pass 
 
-    def onObjectExitCell(self, object : MapObject) -> None: 
+    def onExitCell(self) -> None: 
         pass 
 
     def update(self) -> None: 

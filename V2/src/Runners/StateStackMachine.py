@@ -7,7 +7,7 @@ from ..GameStates.Interfaces.GameState import GameState
 
 from ..GameStates.Interfaces.View import View
 
-from .Data import Data
+from ..Data.Data import Data
 
 from pygame.event import Event 
 from pygame import Surface

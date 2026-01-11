@@ -6,7 +6,7 @@ import pygame
 from typing import Tuple 
 
 from .StateStackMachine import StateStackMachine
-from ..GameStates.MapExploration.MapState import MapState
+from ..GameStates.Map.MapState import MapState
 
 
 class GameRunner:

@@ -1,8 +1,9 @@
 from __future__ import annotations
 
-from typing import Protocol, Tuple
+from typing import Protocol, Tuple, TYPE_CHECKING
 
-from ..MapObjects.MapObject import MapObject
+if TYPE_CHECKING:
+    from ..MapObjects.MapObject import MapObject
 
 from pygame import Surface
 

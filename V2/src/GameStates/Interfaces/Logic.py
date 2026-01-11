@@ -1,6 +1,6 @@
 from typing import Protocol, Any
 
-from ...Runners.Data import Data
+from ...Data.Data import Data
 
 class Logic(Protocol): 
     def handle(command : str, data : Data, *args, **kwargs) -> None: ...

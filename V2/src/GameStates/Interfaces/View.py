@@ -5,7 +5,7 @@ from typing import Protocol, Optional, Tuple
 from pygame import Surface 
 from pygame.event import Event 
 
-from ...Runners.Data import Data
+from ...Data.Data import Data
 
 class View(Protocol): 
 

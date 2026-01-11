@@ -6,14 +6,14 @@ from pygame import Surface
 
 from pygame.font import Font, SysFont
 
-from .....Config import FONTS
+from config.Config import FONTS
 
 from ..MapObjects.MapObject import MapObject
 
-class PlainsCell:
+class BaseCell:
     FONT        : str = FONTS['cell_font']
-    FONT_COLOR  : Tuple[int, int, int] = (99, 222, 99)
-    MAP_SYMBOL  : str = '.'
+    FONT_COLOR  : Tuple[int, int, int] = (255, 255, 255)
+    MAP_SYMBOL  : str = 'B'
 
     def __init__(self):
         pass 

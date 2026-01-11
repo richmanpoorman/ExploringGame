@@ -19,7 +19,7 @@ class MapState:
 
     def init(self, stateMachine : StateStackMachine):
         self.__stateMachine : StateStackMachine = stateMachine 
-        self.__logic        : MapLogic          = MapLogic(self.__stateMachine.data)
+        self.__logic        : MapLogic          = MapLogic()
         self.__view         : MapView           = MapView(self.__logic)
 
     def onStateEntrance(self) -> None: 

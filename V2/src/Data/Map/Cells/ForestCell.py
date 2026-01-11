@@ -6,7 +6,7 @@ from pygame import Surface
 
 from pygame.font import Font, SysFont
 
-from .....Config import FONTS
+from config.Config import FONTS
 
 from ..MapObjects.MapObject import MapObject
 

@@ -1,8 +1,9 @@
 from __future__ import annotations
 
-from typing import Protocol, Tuple 
+from typing import Protocol, Tuple, TYPE_CHECKING
 
-from ..Cells.Cell import Cell
+if TYPE_CHECKING: 
+    from ..Cells.Cell import Cell
 
 from pygame.surface import Surface
 
@@ -17,3 +18,5 @@ class MapObject(Protocol):
     def surface(self, size : Tuple[int, int] = (32, 32)) -> Surface: ...
 
     def canMoveTo(self, cell : Cell) -> bool: ...
+
+    def onInteractWithObject(self, other : MapObject) -> None: ...

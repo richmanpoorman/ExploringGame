@@ -1,26 +1,32 @@
 from __future__ import annotations
 
-from typing import Protocol, Tuple 
+from typing import Tuple
 
-from ..Cells.Cell import Cell
+from pygame import Surface
 
-from pygame.surface import Surface
 from pygame.font import Font, SysFont
 
-from .....Config import FONTS
+from config.Config import FONTS
 
-class MapPlayer:
+from ..MapObjects.MapObject import MapObject
 
+class PlainsCell:
     FONT        : str = FONTS['cell_font']
-    FONT_COLOR  : Tuple[int, int, int] = (255, 255, 0)
-    MAP_SYMBOL  : str = '@'
+    FONT_COLOR  : Tuple[int, int, int] = (99, 222, 99)
+    MAP_SYMBOL  : str = '.'
 
-    def onEnterCell(self, cell : Cell) -> None: ... 
+    def __init__(self):
+        pass 
 
-    def onExitCell(self, cell : Cell) -> None: ... 
+    def onObjectEnterCell(self, object : MapObject) -> None: 
+        pass 
+
+    def onObjectExitCell(self, object : MapObject) -> None: 
+        pass 
 
     def update(self) -> None: 
         pass 
+
     
     def surface(self, size : Tuple[int, int] = (32, 32)) -> Surface: 
         display : Surface = Surface(size) 
@@ -28,5 +34,5 @@ class MapPlayer:
         text    : Surface = font.render(self.MAP_SYMBOL, True, self.FONT_COLOR)
         display.blit(text, (0, 0))
 
-    def canMoveTo(self, cell : Cell) -> bool: 
+    def canMoveTo(self, object : MapObject) -> bool: 
         return True
