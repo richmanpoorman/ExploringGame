@@ -8,6 +8,8 @@ from pygame.font import Font, SysFont
 
 from config.Config import FONTS
 
+from ..MapObjects import MapObject
+
 class MountainCell:
     FONT        : str = FONTS['cell_font']
     FONT_COLOR  : Tuple[int, int, int] = (97, 101, 107)
@@ -16,10 +18,10 @@ class MountainCell:
     def __init__(self):
         pass 
 
-    def onEnterCell(self) -> None: 
+    def onObjectEnterCell(self) -> None: 
         pass 
 
-    def onExitCell(self) -> None: 
+    def onObjectExitCell(self) -> None: 
         pass 
 
     def update(self) -> None: 
@@ -28,9 +30,10 @@ class MountainCell:
     
     def surface(self, size : Tuple[int, int] = (32, 32)) -> Surface: 
         display : Surface = Surface(size) 
-        font    : Font    = SysFont(self.FONT, sum(size) / 2)
+        font    : Font    = SysFont(self.FONT, sum(size) // 2 - 1)
         text    : Surface = font.render(self.MAP_SYMBOL, True, self.FONT_COLOR)
         display.blit(text, (0, 0))
+        return display
 
     def canMoveTo(self, object : MapObject) -> bool: 
         return True

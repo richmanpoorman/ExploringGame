@@ -1,12 +1,13 @@
 from __future__ import annotations
 
-from typing import Protocol, Tuple, TYPE_CHECKING
+from typing import Protocol, Tuple, TYPE_CHECKING, runtime_checkable
 
 if TYPE_CHECKING:
     from ..MapObjects.MapObject import MapObject
 
 from pygame import Surface
 
+@runtime_checkable
 class Cell(Protocol):
     
     def onObjectEnterCell(self, object : MapObject) -> None: ... 

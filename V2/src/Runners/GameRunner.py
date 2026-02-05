@@ -26,12 +26,12 @@ class GameRunner:
 
     # Initialization 
     def init(self) -> None: 
-        initialState : MapState = MapState()
+        
         
         self.stateMachine = StateStackMachine()
 
-        initialState.init(self.stateMachine)
-        self.stateMachine.init(initialState)
+        self.stateMachine.init()
+
 
 
     def run(self) -> None: 

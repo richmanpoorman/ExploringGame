@@ -8,23 +8,27 @@ from ..GameStates.Interfaces.GameState import GameState
 from ..GameStates.Interfaces.View import View
 
 from ..Data.Data import Data
+from ..GameStates.Map.MapState import MapState
 
 from pygame.event import Event 
 from pygame import Surface
 
 class StateStackMachine:
     def __init__(self) -> None: 
-        pass 
-
-    def init(self, initialState : GameState): 
         self.__data : Data = Data() 
-        self.__stateStack : List[GameState] = [initialState] 
+        self.__stateStack : List[GameState] = [] 
+        
+        
+    def init(self) -> None: 
+        initialState : MapState = MapState(self)
+        self.__stateStack.append(initialState) 
 
     def enterState(self, state : GameState) -> None: 
         exitedState : GameState = self.__stateStack[-1] 
         self.__stateStack.append(state)
 
         exitedState.onExitState() 
+        state.setContext(self)
         state.onEnterState()
 
     def exitState(self) -> None: 

@@ -30,9 +30,10 @@ class PlainsCell:
     
     def surface(self, size : Tuple[int, int] = (32, 32)) -> Surface: 
         display : Surface = Surface(size) 
-        font    : Font    = SysFont(self.FONT, sum(size) / 2)
+        font    : Font    = SysFont(self.FONT, sum(size) // 2 - 1)
         text    : Surface = font.render(self.MAP_SYMBOL, True, self.FONT_COLOR)
         display.blit(text, (0, 0))
+        return display
 
     def canMoveTo(self, object : MapObject) -> bool: 
         return True
