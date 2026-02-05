@@ -21,13 +21,17 @@ from ...Data.Map.MapObjects.MapObject import MapObject
 from ...Data.Settings import KEY_BINDINGS
 
 class MapView: 
-    CELL_SIZE : Tuple[int, int] = (16, 16)
-    MAP_SIZE  : Tuple[int, int] = (19, 19)
 
     def __init__(self, context : Context, logic : MapLogic):
         self.setContext(context)
         self.logic : MapLogic = logic
         self.__bindings : Dict[int, str] = KEY_BINDINGS["exploration"]
+
+        self.__screenSize : Tuple[int, int] = (512, 512)
+        self.__cellSize : Tuple[int, int]   = (16, 16)
+        self.__mapSize  : Tuple[int, int]   = (19, 19)
+
+        self.__surface : Surface = Surface(self.__screenSize)
 
     def setContext(self, context : Context) -> None: 
         self.context = context
@@ -38,17 +42,11 @@ class MapView:
 
     '''Things to do every time the frame is updated'''
     def update(self) -> None: 
-        pass 
-
-    '''Things to do when exiting the view'''
-    def exit(self) -> None: 
-        pass 
-
-    def surface(self, screenSize : Tuple[int, int] = (512, 512)) -> Surface: 
-        surface : Surface = Surface(screenSize)
-        width, height = screenSize
-        cellWidth, cellHeight = self.CELL_SIZE
-        mapWidth, mapHeight   = self.MAP_SIZE
+        '''Update the surface'''
+        surface : Surface = Surface(self.__screenSize)
+        width, height = self.__screenSize
+        cellWidth, cellHeight = self.__cellSize
+        mapWidth, mapHeight   = self.__mapSize
         
         mapData : MapData = self.context.data.mapData
 
@@ -58,9 +56,22 @@ class MapView:
             for column in range(-(mapHeight // 2), mapHeight // 2 + 1): 
                 cellOrObject : Cell | MapObject = mapData.at((playerRow + row, playerCol + column))
                 cellSurface : Surface = cellOrObject.surface((cellWidth, cellHeight))
-                surface.blit(cellSurface, (width // 2 + row * cellWidth, height // 2 + column * cellHeight))
+                surface.blit(cellSurface, (width // 2 - cellWidth // 2 + column * cellWidth, height // 2 - cellHeight // 2 + row * cellHeight))
+        
+        self.__surface = surface
+
+    '''Things to do when exiting the view'''
+    def exit(self) -> None: 
+        pass 
+
+    def surface(self, screenSize : Tuple[int, int] = (512, 512)) -> Surface: 
+        if (self.__screenSize != screenSize):
+            self.__screenSize = screenSize
+            largestCellSize : int = min(screenSize[0] // self.__mapSize[0], screenSize[1] // self.__mapSize[1])
+            self.__cellSize = (largestCellSize, largestCellSize)
+            self.update() 
                 
-        return surface
+        return self.__surface 
 
     def onEvent(self, event : Event) -> Optional[Tuple[str, ...]]: 
         

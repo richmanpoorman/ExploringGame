@@ -69,4 +69,5 @@ class MapState:
     def __move(self, direction : Literal["up", "down", "left", "right"]) -> None: 
         self.logic.handle("move", direction)
         # self.view.handle("move", direction)
+        self.view.update()
         print(f'Moved {direction}')

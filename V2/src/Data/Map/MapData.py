@@ -65,7 +65,7 @@ class MapData:
             self.addCell(cell, location)
         return cell
 
-    def generateCell(self, location : Tuple[int, int]) -> Cell: 
+    def generateCell(self, location : Tuple[int, int]) -> Cell: # TODO :: Add better terrain generation rules
         options = [ForestCell, MountainCell, PlainsCell]
         cell : Cell = choice(options)()
         return cell
